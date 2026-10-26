@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StaffSync — HR Management</title>
+<style>
+:root{--navy:#14213d;--blue:#4361ee;--pale:#f4f7fb;--ink:#1d2939;--muted:#667085;--line:#e5eaf2;--green:#14804a;--orange:#b54708}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--pale);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:600}button.secondary{background:#edf1ff;color:#3447b5}button.danger{background:#fff0f0;color:#b42318}.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}.sidebar{background:var(--navy);color:#fff;padding:25px 16px}.brand{font-size:22px;font-weight:800;letter-spacing:-.5px;padding:0 12px 30px}.brand span{color:#8da2ff}.nav{display:grid;gap:7px}.nav button{background:transparent;text-align:left;color:#cbd5e1;font-weight:500;padding:13px 14px}.nav button.active,.nav button:hover{background:#26385b;color:#fff}.side-note{font-size:12px;color:#aab8d0;line-height:1.6;margin:35px 12px}.main{min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:12px}.topbar h2{font-size:18px;margin:0}.user{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#e5eaff;color:#3447b5;font-weight:800}.content{padding:28px;max-width:1400px;margin:auto}.welcome{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}.welcome h1{margin:0 0 7px;font-size:27px;letter-spacing:-.7px}.welcome p{margin:0;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 2px 8px #14213d05}.stat .label{color:var(--muted);font-size:13px}.stat .num{font-size:30px;font-weight:800;margin:10px 0 4px}.stat .hint{font-size:12px;color:var(--green)}.columns{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}.panel h3{margin:0 0 17px;font-size:16px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-head h3{margin:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:var(--muted);font-weight:600;background:#fafbfe}th,td{padding:13px 11px;border-bottom:1px solid var(--line);white-space:nowrap}tbody tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:700;background:#edf1ff;color:#3447b5}.pill.green{background:#e7f7ee;color:var(--green)}.pill.orange{background:#fff2e0;color:var(--orange)}.pill.red{background:#fff0f0;color:#b42318}.activity{display:grid;gap:15px}.activity-item{display:flex;gap:12px;align-items:flex-start}.dot{width:10px;height:10px;border-radius:50%;background:#7188ff;margin-top:5px;flex-shrink:0}.activity-item strong{font-size:13px}.activity-item p{font-size:12px;color:var(--muted);margin:4px 0 0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input,.toolbar select,.field input,.field select,.field textarea{border:1px solid #d5dce8;border-radius:10px;padding:10px 12px;background:#fff;min-width:0}.toolbar input{flex:1;min-width:190px}.page-grid{display:grid;gap:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:6px;font-size:12px;font-weight:700;color:#475467}.field input,.field select,.field textarea{width:100%;font-weight:400;color:var(--ink)}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}.empty{padding:24px;text-align:center;color:var(--muted)}.announcement{padding:15px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}.announcement strong{font-size:14px}.announcement p{font-size:13px;color:var(--muted);margin:7px 0 0;line-height:1.5}.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#14213d,#3148a8);display:none;align-items:center;justify-content:center;padding:20px;z-index:5}.login-card{background:#fff;border-radius:20px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0003}.login-card h1{margin:0 0 7px}.login-card p{color:var(--muted);font-size:14px;line-height:1.5}.login-card .field{margin:16px 0}.login-card button{width:100%}.toast{position:fixed;right:22px;bottom:22px;background:#14213d;color:#fff;padding:13px 18px;border-radius:12px;display:none;z-index:10;box-shadow:0 8px 30px #0002}.small{font-size:12px;color:var(--muted)}@media(max-width:1000px){.app{grid-template-columns:190px 1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}}@media(max-width:650px){.app{grid-template-columns:1fr}.sidebar{padding:12px;position:static}.brand{padding:8px 10px 14px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:10px}.side-note{display:none}.topbar{padding:0 16px;height:62px}.content{padding:18px 14px}.welcome{align-items:flex-start;flex-direction:column}.welcome h1{font-size:23px}.cards{gap:10px}.stat{padding:15px}.stat .num{font-size:25px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">Staff<span>Sync</span></div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="Dashboard">▦ &nbsp; Dashboard</button>
+    <button data-page="Employees">♙ &nbsp; Employees</button>
+    <button data-page="Attendance">◷ &nbsp; Attendance</button>
+    <button data-page="Leave Requests">▣ &nbsp; Leave Requests</button>
+    <button data-page="Announcements">◉ &nbsp; Announcements</button>
+    <button data-page="Training">◇ &nbsp; Training</button>
+  </nav>
+  <div class="side-note">HUMAN RESOURCES<br><br>Keep your team connected, organized, and moving forward.</div>
+</aside>
+<main class="main">
+  <header class="topbar"><h2 id="pageTitle">Dashboard</h2><div class="user"><span id="today"></span><div class="avatar">HR</div><span>HR Admin</span><button class="secondary" id="resetDemo" title="Restore sample data">Reset demo</button></div></header>
+  <section class="content" id="content"></section>
+</main>
+</div>
+<div class="login-screen" id="loginScreen"><div class="login-card"><div class="brand" style="padding:0 0 20px;color:#14213d">Staff<span>Sync</span></div><h1>Welcome back</h1><p>Sign in to your workspace. This demo uses a local sample account.</p><form id="loginForm"><label class="field">Email<input type="email" id="email" value="admin@staffsync.demo" required></label><label class="field">Password<input type="password" id="password" value="staffsync123" required></label><button type="submit">Sign in</button></form><p class="small">Demo credentials: admin@staffsync.demo / staffsync123</p></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const initial={
+ employees:[
+ {id:1,name:"Aarav Sharma",role:"Product Designer",department:"Design",email:"aarav@staffsync.demo",status:"Active"},
+ {id:2,name:"Meera Patel",role:"Frontend Developer",department:"Engineering",email:"meera@staffsync.demo",status:"Active"},
+ {id:3,name:"Kabir Singh",role:"HR Executive",department:"Human Resources",email:"kabir@staffsync.demo",status:"Active"},
+ {id:4,name:"Ananya Verma",role:"Data Analyst",department:"Analytics",email:"ananya@staffsync.demo",status:"On Leave"},
+ {id:5,name:"Rohan Gupta",role:"Backend Developer",department:"Engineering",email:"rohan@staffsync.demo",status:"Active"}
+ ],
+ attendance:[
+ {id:1,name:"Aarav Sharma",date:new Date().toISOString().slice(0,10),checkin:"09:04 AM",status:"Present"},
+ {id:2,name:"Meera Patel",date:new Date().toISOString().slice(0,10),checkin:"09:18 AM",status:"Present"},
+ {id:3,name:"Kabir Singh",date:new Date().toISOString().slice(0,10),checkin:"—",status:"Absent"}
+ ],
+ leaves:[
+ {id:1,name:"Ananya Verma",type:"Personal Leave",from:"2026-10-28",to:"2026-10-29",reason:"Personal commitments",status:"Pending"},
+ {id:2,name:"Rohan Gupta",type:"Sick Leave",from:"2026-10-20",to:"2026-10-20",reason:"Not feeling well",status:"Approved"}
+ ],
+ announcements:[
+ {id:1,title:"Welcome to StaffSync",body:"Your central place for people operations. Keep your profile up to date and check announcements regularly.",date:"Today"},
+ {id:2,title:"Monthly team meet-up",body:"Department leads should share their updates before Friday's all-hands meeting.",date:"Yesterday"}
+ ],
+ training:[
+ {id:1,title:"Workplace Security Essentials",category:"Compliance",duration:"45 min",status:"In Progress"},
+ {id:2,title:"Communication & Collaboration",category:"Professional Development",duration:"1 hr",status:"Not Started"},
+ {id:3,title:"Data Privacy Basics",category:"Compliance",duration:"30 min",status:"Completed"}
+ ]
+};
+let data;
+try{data=JSON.parse(localStorage.getItem("staffsync-data"))||structuredClone(initial)}catch(e){data=JSON.parse(JSON.stringify(initial))}
+let currentPage="Dashboard";
+function save(){localStorage.setItem("staffsync-data",JSON.stringify(data))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function badge(s){let cl=s==="Active"||s==="Present"||s==="Approved"||s==="Completed"?"green":s==="Pending"||s==="On Leave"||s==="In Progress"?"orange":s==="Absent"||s==="Rejected"?"red":"";return `<span class="pill ${cl}">${esc(s)}</span>`}
+function showToast(t){let el=document.getElementById("toast");el.textContent=t;el.style.display="block";setTimeout(()=>el.style.display="none",2300)}
+function setPage(p){currentPage=p;document.getElementById("pageTitle").textContent=p;document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===p));render()}
+document.getElementById("nav").addEventListener("click",e=>{let b=e.target.closest("button[data-page]");if(b)setPage(b.dataset.page)});
+document.getElementById("today").textContent=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+const content=document.getElementById("content");
+function render(){
+ let html="";
+ if(currentPage==="Dashboard"){
+  let present=data.attendance.filter(a=>a.date===new Date().toISOString().slice(0,10)&&a.status==="Present").length;
+  html=`<div class="welcome"><div><h1>Good to see you, HR team 👋</h1><p>Here’s what’s happening across your organization today.</p></div><button onclick="setPage('Employees')">＋ Add employee</button></div>
+  <div class="cards">
+   <div class="stat"><div class="label">Total employees</div><div class="num">${data.employees.length}</div><div class="hint">Across all departments</div></div>
+   <div class="stat"><div class="label">Present today</div><div class="num">${present}</div><div class="hint">Based on attendance records</div></div>
+   <div class="stat"><div class="label">Pending leave requests</div><div class="num">${data.leaves.filter(x=>x.status==="Pending").length}</div><div class="hint">Review requests below</div></div>
+   <div class="stat"><div class="label">Training courses</div><div class="num">${data.training.length}</div><div class="hint">Learning and development</div></div>
+  </div>
+  <div class="columns"><div class="panel"><div class="panel-head"><h3>Recent employees</h3><button class="secondary" onclick="setPage('Employees')">View all</button></div>${employeeTable(data.employees.slice(0,4))}</div>
+  <div class="panel"><h3>Latest updates</h3><div class="activity">${data.announcements.slice(0,4).map(a=>`<div class="activity-item"><span class="dot"></span><div><strong>${esc(a.title)}</strong><p>${esc(a.body)}</p></div></div>`).join("")||'<div class="empty">No announcements yet.</div>'}</div></div></div>`;
+ }else if(currentPage==="Employees"){
+  html=`<div class="welcome"><div><h1>Employee directory</h1><p>Manage employee profiles and department information.</p></div><button onclick="toggleForm('employeeForm')">＋ Add employee</button></div>
+  <div class="panel" id="employeeFormPanel" style="display:none;margin-bottom:18px"><h3>Add employee</h3><form id="employeeForm"><div class="form-grid">
+   <label class="field">Full name<input name="name" required placeholder="e.g. Priya Shah"></label><label class="field">Job title<input name="role" required placeholder="e.g. Software Engineer"></label>
+   <label class="field">Department<select name="department"><option>Engineering</option><option>Design</option><option>Human Resources</option><option>Analytics</option><option>Marketing</option><option>Finance</option></select></label><label class="field">Email<input name="email" type="email" required placeholder="name@company.com"></label>
+  </div><div class="form-actions"><button type="button" class="secondary" onclick="toggleForm('employeeForm')">Cancel</button><button type="submit">Save employee</button></div></form></div>
+  <div class="panel"><div class="toolbar"><input id="employeeSearch" placeholder="Search by name, role, department…" oninput="filterEmployees()"><select id="departmentFilter" onchange="filterEmployees()"><option value="">All departments</option>${[...new Set(data.employees.map(e=>e.department))].map(d=>`<option>${esc(d)}</option>`).join("")}</select></div><div id="employeeTable">${employeeTable(data.employees)}</div></div>`;
+ }else if(currentPage==="Attendance"){
+  html=`<div class="welcome"><div><h1>Attendance</h1><p>Track daily attendance and check-in status.</p></div><button onclick="toggleForm('attendanceForm')">＋ Mark attendance</button></div>
+  <div class="panel" id="attendanceFormPanel" style="display:none;margin-bottom:18px"><h3>Mark attendance</h3><form id="attendanceForm"><div class="form-grid"><label class="field">Employee<select name="name" required>${data.employees.map(e=>`<option>${esc(e.name)}</option>`).join("")}</select></label><label class="field">Date<input name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required></label><label class="field">Check-in time<input name="checkin" type="time" required></label><label class="field">Status<select name="status"><option>Present</option><option>Absent</option><option>Late</option></select></label></div><div class="form-actions"><button type="submit">Save attendance</button></div></form></div>
+  <div class="panel"><div class="panel-head"><h3>Attendance records</h3><span class="small">${data.attendance.length} records</span></div><div class="table-wrap"><table><thead><tr><th>Employee</th><th>Date</th><th>Check-in</th><th>Status</th></tr></thead><tbody>${data.attendance.slice().reverse().map(a=>`<tr><td>${esc(a.name)}</td><td>${esc(a.date)}</td><td>${esc(a.checkin)}</td><td>${badge(a.status)}</td></tr>`).join("")||'<tr><td colspan="4" class="empty">No attendance records.</td></tr>'}</tbody></table></div></div>`;
+ }else if(currentPage==="Leave Requests"){
+  html=`<div class="welcome"><div><h1>Leave requests</h1><p>Review employee time-off requests and update their status.</p></div><button onclick="toggleForm('leaveForm')">＋ New request</button></div>
+  <div class="panel" id="leaveFormPanel" style="display:none;margin-bottom:18px"><h3>Create leave request</h3><form id="leaveForm"><div class="form-grid"><label class="field">Employee<select name="name">${data.employees.map(e=>`<option>${esc(e.name)}</option>`).join("")}</select></label><label class="field">Leave type<select name="type"><option>Annual Leave</option><option>Sick Leave</option><option>Personal Leave</option><option>Unpaid Leave</option></select></label><label class="field">From<input name="from" type="date" required></label><label class="field">To<input name="to" type="date" required></label><label class="field full">Reason<textarea name="reason" rows="2" required placeholder="Brief reason for leave"></textarea></label></div><div class="form-actions"><button type="submit">Submit request</button></div></form></div>
+  <div class="panel"><div class="table-wrap"><table><thead><tr><th>Employee</th><th>Type</th><th>Dates</th><th>Reason</th><th>Status</th><th>Action</th></tr></thead><tbody>${data.leaves.slice().reverse().map(l=>`<tr><td>${esc(l.name)}</td><td>${esc(l.type)}</td><td>${esc(l.from)} – ${esc(l.to)}</td><td>${esc(l.reason)}</td><td>${badge(l.status)}</td><td>${l.status==="Pending"?`<button class="secondary" onclick="updateLeave(${l.id},'Approved')">Approve</button> <button class="danger" onclick="updateLeave(${l.id},'Rejected')">Reject</button>`:'—'}</td></tr>`).join("")||'<tr><td colspan="6" class="empty">No leave requests.</td></tr>'}</tbody></table></div></div>`;
+ }else if(currentPage==="Announcements"){
+  html=`<div class="welcome"><div><h1>Announcements</h1><p>Share company news and important updates with your team.</p></div><button onclick="toggleForm('announcementForm')">＋ New announcement</button></div>
+  <div class="panel" id="announcementFormPanel" style="display:none;margin-bottom:18px"><h3>Create announcement</h3><form id="announcementForm"><div class="form-grid"><label class="field full">Title<input name="title" required placeholder="Announcement title"></label><label class="field full">Message<textarea name="body" rows="3" required placeholder="Write your update…"></textarea></label></div><div class="form-actions"><button type="submit">Publish announcement</button></div></form></div>
+  <div class="page-grid">${data.announcements.slice().reverse().map(a=>`<div class="panel"><div class="panel-head"><h3>${esc(a.title)}</h3><span class="small">${esc(a.date)}</span></div><p style="margin:0;color:#667085;line-height:1.6">${esc(a.body)}</p></div>`).join("")||'<div class="panel empty">No announcements yet.</div>'}</div>`;
+ }else if(currentPage==="Training"){
+  html=`<div class="welcome"><div><h1>Learning & training</h1><p>Keep track of team learning and compliance courses.</p></div><button onclick="toggleForm('trainingForm')">＋ Add course</button></div>
+  <div class="panel" id="trainingFormPanel" style="display:none;margin-bottom:18px"><h3>Add training course</h3><form id="trainingForm"><div class="form-grid"><label class="field">Course title<input name="title" required></label><label class="field">Category<select name="category"><option>Compliance</option><option>Professional Development</option><option>Technical Skills</option><option>Leadership</option></select></label><label class="field">Duration<input name="duration" required placeholder="e.g. 2 hours"></label><label class="field">Status<select name="status"><option>Not Started</option><option>In Progress</option><option>Completed</option></select></label></div><div class="form-actions"><button type="submit">Save course</button></div></form></div>
+  <div class="cards">${data.training.map(t=>`<div class="stat"><div class="label">${esc(t.category)}</div><div class="num" style="font-size:19px;line-height:1.35">${esc(t.title)}</div><div class="small">${esc(t.duration)}</div><div style="margin-top:15px">${badge(t.status)}</div><div style="margin-top:15px"><button class="secondary" onclick="cycleTraining(${t.id})">Update status</button></div></div>`).join("")||'<div class="panel empty">No training courses yet.</div>'}</div>`;
+ }
+ content.innerHTML=html;
+ wireForms();
+}
+function employeeTable(list){return `<div class="table-wrap"><table><thead><tr><th>Employee</th><th>Job title</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${list.map(e=>`<tr><td><strong>${esc(e.name)}</strong></td><td>${esc(e.role)}</td><td>${esc(e.department)}</td><td>${esc(e.email)}</td><td>${badge(e.status)}</td><td><button class="danger" onclick="deleteEmployee(${e.id})">Remove</button></td></tr>`).join("")||'<tr><td colspan="6" class="empty">No employees found.</td></tr>'}</tbody></table></div>`}
+function toggleForm(id){let el=document.getElementById(id+"Panel");if(el)el.style.display=el.style.display==="none"?"block":"none"}
+function filterEmployees(){let q=(document.getElementById("employeeSearch")?.value||"").toLowerCase(),d=document.getElementById("departmentFilter")?.value||"";let list=data.employees.filter(e=>(`${e.name} ${e.role} ${e.department} ${e.email}`.toLowerCase().includes(q))&&(!d||e.department===d));document.getElementById("employeeTable").innerHTML=employeeTable(list)}
+function deleteEmployee(id){if(confirm("Remove this employee from the demo directory?")){data.employees=data.employees.filter(e=>e.id!==id);save();render();showToast("Employee removed")}}
+function updateLeave(id,status){let l=data.leaves.find(x=>x.id===id);if(l){l.status=status;save();render();showToast("Leave request "+status.toLowerCase())}}
+function cycleTraining(id){let t=data.training.find(x=>x.id===id);if(t){t.status=t.status==="Not Started"?"In Progress":t.status==="In Progress"?"Completed":"Not Started";save();render();showToast("Training status updated")}}
+function wireForms(){
+ let ef=document.getElementById("employeeForm");if(ef)ef.onsubmit=e=>{e.preventDefault();let f=new FormData(ef);data.employees.push({id:Date.now(),name:f.get("name").trim(),role:f.get("role").trim(),department:f.get("department"),email:f.get("email").trim(),status:"Active"});save();render();showToast("Employee added successfully")};
+ let af=document.getElementById("attendanceForm");if(af)af.onsubmit=e=>{e.preventDefault();let f=new FormData(af),t=f.get("checkin");let [h,m]=t.split(":").map(Number),amp=h>=12?"PM":"AM";let hh=h%12||12;data.attendance.push({id:Date.now(),name:f.get("name"),date:f.get("date"),checkin:`${String(hh).padStart(2,"0")}:${String(m).padStart(2,"0")} ${amp}`,status:f.get("status")});save();render();showToast("Attendance saved")};
+ let lf=document.getElementById("leaveForm");if(lf)lf.onsubmit=e=>{e.preventDefault();let f=new FormData(lf);if(f.get("to")<f.get("from")){showToast("End date must be after start date");return}data.leaves.push({id:Date.now(),name:f.get("name"),type:f.get("type"),from:f.get("from"),to:f.get("to"),reason:f.get("reason").trim(),status:"Pending"});save();render();showToast("Leave request submitted")};
+ let an=document.getElementById("announcementForm");if(an)an.onsubmit=e=>{e.preventDefault();let f=new FormData(an);data.announcements.push({id:Date.now(),title:f.get("title").trim(),body:f.get("body").trim(),date:"Today"});save();render();showToast("Announcement published")};
+ let tf=document.getElementById("trainingForm");if(tf)tf.onsubmit=e=>{e.preventDefault();let f=new FormData(tf);data.training.push({id:Date.now(),title:f.get("title").trim(),category:f.get("category"),duration:f.get("duration").trim(),status:f.get("status")});save();render();showToast("Training course added")};
+}
+document.getElementById("resetDemo").onclick=()=>{if(confirm("Restore the original sample data? Your demo changes will be lost.")){data=JSON.parse(JSON.stringify(initial));save();render();showToast("Demo data restored")}};
+document.getElementById("loginForm").onsubmit=e=>{e.preventDefault();if(document.getElementById("email").value==="admin@staffsync.demo"&&document.getElementById("password").value==="staffsync123"){document.getElementById("loginScreen").style.display="none";showToast("Signed in to demo workspace")}else alert("Use the demo credentials shown below the form.")};
+render();
+</script>
+</body></html>
