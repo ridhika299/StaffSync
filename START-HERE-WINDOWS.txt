@@ -1,0 +1,37 @@
+STAFFSYNC HRM — START HERE (WINDOWS / VS CODE)
+
+IMPORTANT
+- Keep server/.env private. Never share it or upload it to GitHub.
+- Put your real MongoDB Atlas connection string in server/.env (copy server/.env.example to server/.env first).
+- Replace the placeholder password in MONGO_URI with your Atlas database user's password. If password contains special characters, URL-encode them.
+
+1) Open the folder StaffSync-HRM-Exact-Reference in VS Code (File > Open Folder).
+2) In VS Code choose Terminal > New Terminal. The terminal should show the project root, the folder containing client and server.
+3) Install frontend packages (PowerShell-friendly):
+   cd .\client
+   npm.cmd install
+4) Start frontend in that terminal:
+   npm.cmd run dev
+   Keep this terminal open. Open the localhost URL Vite prints (usually http://localhost:5173).
+5) Open a SECOND terminal (Terminal > New Terminal), from the project root run:
+   cd .\server
+   copy .env.example .env
+   notepad .env
+   Add your real MONGO_URI and save. Do not paste credentials into chat.
+   npm.cmd install
+   npm.cmd run dev
+   Keep this terminal open too.
+
+If PowerShell says scripts are disabled, use npm.cmd (not npm) as shown above.
+If `cd .\client` says path not found, you are not at the folder containing client/server. In VS Code Explorer, right-click the folder that contains both client and server and choose Open in Integrated Terminal, then run the commands.
+
+FEATURES IN THIS PROJECT
+Landing page; register/login with Employee, Manager and HR roles; employee portal (announcements, leave, attendance, profile); HR portal (leave approvals, employee management, announcements, attendance); manager portal (leave applications and training); MongoDB-backed API.
+
+TESTING
+- Frontend: Vite URL shown in terminal, usually http://localhost:5173
+- Backend health check: http://localhost:8000/
+- The backend API is not a webpage; /api/... endpoints return JSON.
+- Use a fresh email to register. Role selection is for a college demo; in a real deployment, HR/Manager role assignment must be protected by an administrator.
+
+If any command fails, send a clear screenshot showing the full command and the first error lines. Do not send your .env file or database password.

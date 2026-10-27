@@ -1,0 +1,6 @@
+const router=require("express").Router(); const Employee=require("../models/Employee"); const {protect,allow}=require("../middleware/auth"); router.use(protect);
+router.get("/",async(req,res)=>{try{const filter=req.user.role==="Employee"?{user:req.user._id}:{};res.json(await Employee.find(filter).sort({createdAt:-1}));}catch(e){console.error("Fetch employees:",e.message);res.status(500).json({message:"Failed to fetch employees",error:e.message});}});
+router.post("/",allow("HR"),async(req,res)=>{try{const {name,email,department,position,salary,status}=req.body;const row=await Employee.create({name,email,department,position,salary,status});res.status(201).json(row);}catch(e){res.status(e.code===11000?409:400).json({message:e.code===11000?"Email already exists":e.message});}});
+router.put("/:id",allow("HR"),async(req,res)=>{try{const row=await Employee.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});if(!row)return res.status(404).json({message:"Employee not found"});res.json(row);}catch(e){res.status(400).json({message:e.message});}});
+router.delete("/:id",allow("HR"),async(req,res)=>{try{const row=await Employee.findByIdAndDelete(req.params.id);if(!row)return res.status(404).json({message:"Employee not found"});res.json({message:"Employee deleted"});}catch(e){res.status(400).json({message:e.message});}});
+module.exports=router;

@@ -1,0 +1,6 @@
+const router=require("express").Router();const Training=require("../models/Training");const {protect,allow}=require("../middleware/auth");router.use(protect);
+router.get("/",async(req,res)=>{try{const filter=req.user.role==="Employee"?{$or:[{assignedTo:{$size:0}},{assignedTo:req.user._id}]}:{};res.json(await Training.find(filter).populate("assignedTo","name email").populate("createdBy","name").sort({date:1}));}catch(e){res.status(500).json({message:e.message});}});
+router.post("/",allow("Manager"),async(req,res)=>{try{const {title,description,date,location,assignedTo=[]}=req.body;res.status(201).json(await Training.create({title,description,date,location,assignedTo,createdBy:req.user._id}));}catch(e){res.status(400).json({message:e.message});}});
+router.put("/:id",allow("Manager"),async(req,res)=>{try{const row=await Training.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});if(!row)return res.status(404).json({message:"Training not found"});res.json(row);}catch(e){res.status(400).json({message:e.message});}});
+router.delete("/:id",allow("Manager"),async(req,res)=>{try{await Training.findByIdAndDelete(req.params.id);res.json({message:"Training deleted"});}catch(e){res.status(400).json({message:e.message});}});
+module.exports=router;

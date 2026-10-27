@@ -1,0 +1,5 @@
+const router=require("express").Router();const Attendance=require("../models/Attendance");const {protect,allow}=require("../middleware/auth");router.use(protect);
+router.get("/",async(req,res)=>{try{const filter=req.user.role==="Employee"?{employee:req.user._id}:{};res.json(await Attendance.find(filter).populate("employee","name email").sort({createdAt:-1}).limit(300));}catch(e){res.status(500).json({message:e.message});}});
+router.post("/",allow("Employee"),async(req,res)=>{try{const date=new Date().toISOString().slice(0,10);const row=await Attendance.create({employee:req.user._id,date});res.status(201).json(row);}catch(e){res.status(e.code===11000?409:400).json({message:e.code===11000?"You have already checked in today":e.message});}});
+router.patch("/:id/check-out",allow("Employee"),async(req,res)=>{try{const row=await Attendance.findOneAndUpdate({_id:req.params.id,employee:req.user._id,checkOut:null},{checkOut:new Date(),status:"Completed"},{new:true});if(!row)return res.status(404).json({message:"Open attendance record not found"});res.json(row);}catch(e){res.status(400).json({message:e.message});}});
+module.exports=router;
